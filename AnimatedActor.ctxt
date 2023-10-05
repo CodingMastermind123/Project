@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=AnimatedActor
+comment1.params=
+comment1.target=AnimatedActor()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=a
+comment3.target=void\ setAnimation(Animation)
+numComments=4

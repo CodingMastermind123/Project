@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Animation
+comment1.params=frameDelay\ filename
+comment1.target=Animation(int,\ java.lang.String[])
+comment2.params=a
+comment2.target=void\ setFrameDelay(int)
+comment3.params=
+comment3.target=mayflower.MayflowerImage\ getNextFrame()
+numComments=4
