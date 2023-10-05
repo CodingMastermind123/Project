@@ -56,18 +56,19 @@ public class Cat extends AnimatedActor {
         {
             setAnimation(idle);
         }
+        
+        if(Mayflower.isKeyDown(Keyboard.KEY_UP) || Mayflower.isKeyDown(Keyboard.KEY_RIGHT) && isJumping )
+        {
+            setAnimation(fall);
+        }
 
         super.act();
 
         x = getX();
         y = getY();
         h = getHeight();
-        if(Mayflower.isKeyDown(Keyboard.KEY_UP) && isTouching(Dirt.class))
-        {
-            setAnimation(walk);
-            setLocation(x, y - 1);
-            
-        }
+        Dirt dirt = getOneIntersectingObject(Dirt.class);
+        
         
         if(isTouching(Dirt.class))
         {
@@ -78,7 +79,7 @@ public class Cat extends AnimatedActor {
             groundY = 393;
         }
 
-        if (Mayflower.isKeyDown(Keyboard.KEY_UP) && !isJumping) {
+        if (Mayflower.isKeyDown(Keyboard.KEY_UP) && !isJumping && dirt == null) {
             velocityY = jumpForce;
             isJumping = true;
             isWalking = true;
@@ -89,7 +90,6 @@ public class Cat extends AnimatedActor {
             y += (int) velocityY;
 
             if (y >= groundY) {
-                setAnimation(fall);
                 y = groundY;
                 isJumping = false;
                 velocityY = 0; 
@@ -114,7 +114,14 @@ public class Cat extends AnimatedActor {
             }
         }
         
-        
+        if(Mayflower.isKeyDown(Keyboard.KEY_UP) && dirt != null)
+        {
+            
+            setAnimation(walk);
+            setLocation(x, y - 1);
+            groundY = 150;
+            
+        }
         
     }
 
@@ -130,7 +137,7 @@ private void checkStarCollision()
     if(star != null)
     {
         getWorld().removeObject(star);
-        jumpForce = jumpForce - 2;
+        jumpForce = jumpForce - 1;
     }
 }
 private void checkBoltCollision()
